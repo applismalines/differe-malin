@@ -1,15 +1,15 @@
 {
   "name": "Différé Malin",
-  "short_name": "Différé",
+  "short_name": "Diff. Malin",
   "lang": "fr",
   "description": "Le différé à régler sur vos appareils pour les lancer pendant les heures les moins chères.",
-  "id": "./?app=differe-malin",
+  "id": "./?app=differe-malin-gratuite",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#121410",
-  "theme_color": "#121410",
+  "background_color": "#1d2066",
+  "theme_color": "#1d2066",
   "icons": [
     {
       "src": "icon-192.png",
@@ -28,6 +28,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "icon-monochrome-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "monochrome"
     }
   ]
 }
