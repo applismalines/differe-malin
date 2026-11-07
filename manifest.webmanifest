@@ -2,7 +2,7 @@
   "name": "Différé Malin",
   "short_name": "Diff. Malin",
   "lang": "fr",
-  "description": "Le différé à régler sur vos appareils pour les lancer pendant les heures les moins chères.",
+  "description": "Le différé à régler sur tes appareils pour les lancer pendant les heures les moins chères.",
   "id": "./?app=differe-malin-gratuite",
   "start_url": "./",
   "scope": "./",
