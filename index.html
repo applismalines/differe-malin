@@ -121,7 +121,7 @@ input[type=time],input[type=date],[data-sfrom],[data-sto]{font-size:1.1rem}
 .cost{font-size:.85rem;color:var(--fg2);font-variant-numeric:tabular-nums}
 .cost .good,.save .good{color:var(--ok)}
 .save{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.save .amt{font-family:var(--display);font-size:1.7rem;font-weight:800;color:var(--ok);font-variant-numeric:tabular-nums;line-height:1.1}
+.save .amt,.year .amt{font-family:var(--display);font-size:1.7rem;font-weight:800;color:var(--ok);font-variant-numeric:tabular-nums;line-height:1.1}
 details.opts{background:var(--surface);border:1px solid var(--line);border-radius:14px}
 details.opts summary{list-style:none;padding:0 16px;min-height:48px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700;color:var(--fg2)}
 details.opts summary::-webkit-details-marker{display:none}
@@ -567,7 +567,7 @@ function renderHist(){
   const sum=(from)=>H.filter(x=>x.t>=from).reduce((a,x)=>a+(x.saving||0),0);
   const lock=`<b>🔒 ••,••</b>`,P_=pro();
   const yp=P_?yearProjection():null,pk=H.reduce((a,x)=>a+(x.saving!=null?x.cost+x.saving:0),0),pcm=pk>0?Math.round(H.reduce((a,x)=>a+(x.saving||0),0)/pk*100):null;
-  let h=`<h1>Économies</h1>${trialBanner()}${P_?`<div class="panel"><span class="eyebrow">Sur un an, pour tout le foyer</span>${yp!=null?`<div class="year"><div class="amt" style="font-family:var(--display);font-size:1.9rem;font-weight:800;color:var(--ok)">≈ ${eur(yp)} <span style="font-size:.55em">par an</span></div><span class="note">si tu lances tes machines aux meilleurs créneaux (rythme moyen, ajusté avec ton historique)</span></div>`:`<span class="note">Renseigne tes prix dans Réglages pour voir la projection.</span>`}</div>`:''}<div class="panel"><div class="stats">
+  let h=`<h1>Économies</h1>${trialBanner()}${P_?`<div class="panel encart"><span class="eyebrow">Sur un an, pour tout le foyer</span>${yp!=null?`<div class="year"><div class="amt">≈ ${eur(yp)} <span style="font-size:.55em">par an</span></div><span class="note">si tu lances tes machines aux meilleurs créneaux (rythme moyen, ajusté avec ton historique)</span></div>`:`<span class="note">Renseigne tes prix dans Réglages pour voir la projection.</span>`}</div>`:''}<div class="panel encart"><div class="stats">
     <div class="stat"><span class="eyebrow">Ce mois</span>${P_?`<b>${eur(sum(m0))}</b>`:lock}</div>
     <div class="stat"><span class="eyebrow">Cette année</span>${P_?`<b>${eur(sum(y0))}</b>`:lock}</div>
     <div class="stat"><span class="eyebrow">${P_?"Économisé":"Cycles"}</span>${P_?`<b>${pcm!=null?pcm+' %':'–'}</b>`:`<b>${H.length} cycle${H.length>1?'s':''}</b>`}</div></div>
@@ -575,7 +575,7 @@ function renderHist(){
   if(!P_){h+=proCard()+`<div class="panel"><span class="eyebrow">Derniers cycles</span><div class="hist">${[...H].sort((a,b)=>b.t-a.t).slice(0,30).map(x=>`
     <div><div>${esc(x.appl)} · ${esc(x.cycle)}</div><div class="when">${new Date(x.t).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})} ${fT(x.t)}</div></div>
     <b class="muted">🔒</b><button class="icon-btn" data-hdel="${x.id}" aria-label="Supprimer">✕</button>`).join('')||'<p class="note">Aucun cycle enregistré pour l\'instant.</p>'}</div></div>`;app.innerHTML=h;return}
-  if(!H.length)h+=`<div class="panel"><p class="note">Aucun cycle enregistré. Après avoir programmé la machine, touche « J'ai lancé ce cycle » dans l'onglet Différé.</p></div>`;
+  if(!H.length)h+=`<div class="panel encart"><p class="note">Aucun cycle enregistré. Après avoir programmé la machine, touche « J'ai lancé ce cycle » dans l'onglet Différé.</p></div>`;
   else h+=`<div class="panel"><span class="eyebrow">Derniers cycles</span><div class="hist">${[...H].sort((a,b)=>b.t-a.t).slice(0,60).map(x=>`
     <div><div>${esc(x.appl)} · ${esc(x.cycle)}</div><div class="when">${new Date(x.t).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})} ${fT(x.t)}</div></div>
     <b style="color:var(--ok)">${x.saving!=null?(x.est===false?'':'≈ ')+eur(x.saving):'–'}</b><button class="icon-btn" data-hdel="${x.id}" aria-label="Supprimer">✕</button>`).join('')}</div></div>`;
