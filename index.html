@@ -28,6 +28,7 @@ img{max-width:100%}[hidden]{display:none!important}
 @font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600 800;font-display:swap;src:url(polices/bricolage.woff2) format("woff2")}
 @font-face{font-family:"Share Tech Mono";font-style:normal;font-weight:400;font-display:swap;src:url(polices/share-tech-mono.woff2) format("woff2")}
 @font-face{font-family:"Oswald";font-style:normal;font-weight:600;font-display:swap;src:url(polices/oswald-600.woff2) format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:800;font-display:swap;src:url(polices/big-shoulders-800.woff2) format("woff2")}
 /* Layout: une colonne de téléphone, écran "machine" en tête, barre d'onglets en bas */
 :root{
   --card2:#e6e9f2; --fg2:#3a4060; --bg:#ffffff; --surface:#f3f5fa; --fg:#151a2e; --muted:#5b627d; --line:#d6dbe8;
@@ -70,6 +71,8 @@ input[type=number]{width:5em}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 13px;min-height:44px;font-size:.92rem;display:inline-flex;gap:6px;align-items:center}
 .chip[aria-pressed=true]{border-color:var(--fg);background:var(--fg);color:var(--bg);font-weight:700}
+.chip.cyc{font-family:"Big Shoulders Display","Arial Narrow",sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.02em}
+.chip.cyc[aria-pressed=true]{font-weight:800}
 .chip .star{color:var(--accent)}
 .chip[aria-pressed=true] .star,.chip[aria-pressed=true] .muted{color:inherit}
 .btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;min-height:44px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;color:var(--fg)}
@@ -443,7 +446,7 @@ function renderCalc(){
   const cyc=curCycle(ap);
   if(!cyc){app.innerHTML=h+`<p class="alert">Aucun cycle pour cet appareil.</p>`;return}
   const list=[...visCycles(ap)].sort((a,b)=>b.fav-a.fav);
-  h+=`<div class="chips">${list.map(c=>`<button class="chip" data-cyc="${esc(c.id)}" aria-pressed="${c.id===cyc.id}">${c.fav?'<span class="star">★</span>':''}${esc(c.name)} · ${fDur(c.dur)}</button>`).join('')}</div>`;
+  h+=`<div class="chips">${list.map(c=>`<button class="chip cyc" data-cyc="${esc(c.id)}" aria-pressed="${c.id===cyc.id}">${c.fav?'<span class="star">★</span>':''}${esc(c.name)} · ${fDur(c.dur)}</button>`).join('')}</div>`;
   const cs_=currentSel(now,ap,cyc),ws=cs_.ws,res=cs_.res,sel=cs_.sel;
   DRAG.ctx={all:cs_.all,now,ap,cyc,span:SPAN,bestCost:cs_.bestCost};
   if(sel){h+=`<div class="hero" id="hero">${heroInner(sel,ap,cyc,now,cs_.bestCost)}</div>`}
