@@ -210,7 +210,7 @@ let unlocked=!BUILD_PRO&&lsGet('unlock')==='1';
    Le jeton d'achat est envoyé au petit serveur Applis Malines, qui le confirme auprès de Google
    (sans confirmation sous 3 jours, Google rembourse et retire l'achat). Rien d'autre n'est envoyé. */
 const PLAY_BILLING='https://play.google.com/billing', PLAY_APP='fr.differemalin', PLAY_PRODUIT='pro';
-const VERIF_URL=''; // adresse du serveur, ex. 'https://achats-applismalines.<compte>.workers.dev/verifier' (vide = achat désactivé)
+const VERIF_URL='https://achats-applismalines.applis-malines.workers.dev/verifier'; // serveur Cloudflare qui confirme les achats (vide = achat désactivé)
 let achete=lsGet('achat')==='1';
 const pro=()=>BUILD_PRO||unlocked||achete||trialLeft()>0;
 async function tryUnlock(code){code=(code||'').toUpperCase().replace(/\s/g,'');if(!code)return false;
