@@ -38,7 +38,7 @@ img{max-width:100%}[hidden]{display:none!important}
   --t-bleu:#2f6fd6; --t-blanc:#8b93a8; --t-rouge:#c8322b;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
-  --mono:"Share Tech Mono",ui-monospace,"Consolas",monospace; --big:"Oswald","Arial Narrow",sans-serif;
+  --mono:"Share Tech Mono",ui-monospace,"Consolas",monospace; --big:"Oswald","Arial Narrow",sans-serif; --bs:"Big Shoulders Display","Arial Narrow",sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#000000; --surface:#1C1C1E; --card2:#2C2C2E; --fg:#F2F2F7; --fg2:#D1D1D6; --muted:#98989D; --line:#3A3A3C;
@@ -71,8 +71,15 @@ input[type=number]{width:5em}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 13px;min-height:44px;font-size:.92rem;display:inline-flex;gap:6px;align-items:center}
 .chip[aria-pressed=true]{border-color:var(--fg);background:var(--fg);color:var(--bg);font-weight:700}
-.chip.cyc{font-family:"Big Shoulders Display","Arial Narrow",sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.02em}
+.chip.cyc{font-family:var(--bs);font-weight:800;font-size:1.05rem;letter-spacing:0;flex:1 1 auto;min-width:5.5em;text-align:center;flex-direction:column;justify-content:center;gap:0;line-height:1.05;padding:6px 6px;border-radius:14px}
 .chip.cyc[aria-pressed=true]{font-weight:800}
+.chip.cyc .d{font-size:.85em;opacity:.8}
+.chips.cycs{gap:5px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+/* Big Shoulders : phrase sous le grand chiffre, encart des économies, cycles (Appareils), heures et dates (champs) */
+.hero .sub,.slot,.cost,.encart .note,.encart .saving,.encart .row>span,.cycle input,input[type=time],input[type=date],[data-sfrom],[data-sto]{font-family:var(--bs);font-weight:800;letter-spacing:.02em}
+.hero .sub{font-size:1.3rem}
+.slot,.cost,.encart .note{font-size:1.05rem}
+.cycle input,input[type=time],input[type=date],[data-sfrom],[data-sto]{font-size:1.1rem}
 .chip .star{color:var(--accent)}
 .chip[aria-pressed=true] .star,.chip[aria-pressed=true] .muted{color:inherit}
 .btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;min-height:44px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;color:var(--fg)}
@@ -446,7 +453,7 @@ function renderCalc(){
   const cyc=curCycle(ap);
   if(!cyc){app.innerHTML=h+`<p class="alert">Aucun cycle pour cet appareil.</p>`;return}
   const list=[...visCycles(ap)].sort((a,b)=>b.fav-a.fav);
-  h+=`<div class="chips">${list.map(c=>`<button class="chip cyc" data-cyc="${esc(c.id)}" aria-pressed="${c.id===cyc.id}">${c.fav?'<span class="star">★</span>':''}${esc(c.name)} · ${fDur(c.dur)}</button>`).join('')}</div>`;
+  h+=`<div class="chips cycs" role="group" aria-label="Cycle">${list.map(c=>`<button class="chip cyc" data-cyc="${esc(c.id)}" aria-pressed="${c.id===cyc.id}"><span>${c.fav?'<span class="star">★</span> ':''}${esc(c.name)}</span><span class="d">${fDur(c.dur)}</span></button>`).join('')}</div>`;
   const cs_=currentSel(now,ap,cyc),ws=cs_.ws,res=cs_.res,sel=cs_.sel;
   DRAG.ctx={all:cs_.all,now,ap,cyc,span:SPAN,bestCost:cs_.bestCost};
   if(sel){h+=`<div class="hero" id="hero">${heroInner(sel,ap,cyc,now,cs_.bestCost)}</div>`}
@@ -461,7 +468,7 @@ function renderCalc(){
   }
   h+=frise(now,sel);
   if(sel){const ec=economics(cyc,sel,ap),est=!isLabel(cyc),ap_=est?'≈ ':'',srcT=est?'estimation':'valeur officielle de l\'étiquette';
-    h+=`<div class="panel"><div class="save"><div>`;
+    h+=`<div class="panel encart"><div class="save"><div>`;
     if(pro()){
       const cpy=cyclesPerYear(ap);
       if(ec&&ec.saving<0.005){const yl=ec.peak>0&&cs_.bestCost!=null?(ec.peak-cs_.bestCost)*cpy.n:null;
