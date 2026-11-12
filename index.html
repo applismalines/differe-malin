@@ -28,7 +28,6 @@ img{max-width:100%}[hidden]{display:none!important}
 @font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600 800;font-display:swap;src:url(polices/bricolage.woff2) format("woff2")}
 @font-face{font-family:"Share Tech Mono";font-style:normal;font-weight:400;font-display:swap;src:url(polices/share-tech-mono.woff2) format("woff2")}
 @font-face{font-family:"Oswald";font-style:normal;font-weight:600;font-display:swap;src:url(polices/oswald-600.woff2) format("woff2")}
-@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:800;font-display:swap;src:url(polices/big-shoulders-800.woff2) format("woff2")}
 @font-face{font-family:"Barlow Condensed";font-style:normal;font-weight:600;font-display:swap;src:url(polices/barlow-condensed-600.woff2) format("woff2")}
 /* Layout: une colonne de téléphone, écran "machine" en tête, barre d'onglets en bas */
 :root{
@@ -39,7 +38,7 @@ img{max-width:100%}[hidden]{display:none!important}
   --t-bleu:#2f6fd6; --t-blanc:#8b93a8; --t-rouge:#c8322b;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
-  --mono:"Share Tech Mono",ui-monospace,"Consolas",monospace; --big:"Oswald","Arial Narrow",sans-serif; --bs:"Big Shoulders Display","Arial Narrow",sans-serif; --bc:"Barlow Condensed","Arial Narrow",sans-serif;
+  --mono:"Share Tech Mono",ui-monospace,"Consolas",monospace; --big:"Oswald","Arial Narrow",sans-serif; --bc:"Barlow Condensed","Arial Narrow",sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#000000; --surface:#1C1C1E; --card2:#2C2C2E; --fg:#F2F2F7; --fg2:#D1D1D6; --muted:#98989D; --line:#3A3A3C;
@@ -72,12 +71,12 @@ input[type=number]{width:5em}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 13px;min-height:44px;font-size:.92rem;display:inline-flex;gap:6px;align-items:center}
 .chip[aria-pressed=true]{border-color:var(--fg);background:var(--fg);color:var(--bg);font-weight:700}
-.chip.cyc{font-family:var(--bs);font-weight:800;font-size:1.05rem;letter-spacing:0;flex:1 1 auto;min-width:5.5em;text-align:center;flex-direction:column;justify-content:center;gap:0;line-height:1.05;padding:6px 6px;border-radius:14px}
-.chip.cyc[aria-pressed=true]{font-weight:800}
+.chip.cyc{font-family:var(--bc);font-weight:600;font-size:1.05rem;letter-spacing:0;flex:1 1 auto;min-width:5.5em;text-align:center;flex-direction:column;justify-content:center;gap:0;line-height:1.05;padding:6px 6px;border-radius:14px}
+.chip.cyc[aria-pressed=true]{font-weight:600}
 .chip.cyc .d{font-size:.85em;opacity:.8}
 .chips.cycs{gap:5px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-/* Big Shoulders : phrase sous le grand chiffre, heures et dates (champs) */
-.hero .sub,.slot,.cost,input[type=time],input[type=date],[data-sfrom],[data-sto]{font-family:var(--bs);font-weight:800;letter-spacing:.02em}
+/* Barlow Condensed : phrase sous le grand chiffre, heures et dates (champs) */
+.hero .sub,.slot,.cost,input[type=time],input[type=date],[data-sfrom],[data-sto]{font-family:var(--bc);font-weight:600;letter-spacing:.01em}
 .hero .sub{font-size:1.3rem}
 .slot,.cost{font-size:1.05rem}
 /* Barlow Condensed : phrases de l'encart des économies (pas le montant, pas le bouton) */
