@@ -6,7 +6,7 @@
 <title>Différé Malin</title>
 <meta name="description" content="Le différé à régler sur tes appareils pour les lancer pendant les heures les moins chères.">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#1d2066">
+<meta name="theme-color" content="#08090a">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="mobile-web-app-capable" content="yes">
@@ -27,27 +27,28 @@ img{max-width:100%}[hidden]{display:none!important}
 @font-face{font-family:"Atkinson Hyperlegible";font-style:normal;font-weight:700;font-display:swap;src:url(polices/atkinson-700.woff2) format("woff2")}
 @font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600 800;font-display:swap;src:url(polices/bricolage.woff2) format("woff2")}
 @font-face{font-family:"Share Tech Mono";font-style:normal;font-weight:400;font-display:swap;src:url(polices/share-tech-mono.woff2) format("woff2")}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:600;font-display:swap;src:url(polices/oswald-600.woff2) format("woff2")}
 /* Layout: une colonne de téléphone, écran "machine" en tête, barre d'onglets en bas */
 :root{
-  --bg:#ffffff; --surface:#f3f5fa; --fg:#151a2e; --muted:#5b627d; --line:#d6dbe8;
-  --hsc:#3a3eb4; --accent:#3a3eb4; --hc:#2b8a81; --hp:#cf7a26; --none:#c9cedc;
-  --lcd-bg:#121410; --lcd-fg:#ffb547; --lcd-dim:#7a6430;
+  --card2:#e6e9f2; --fg2:#3a4060; --bg:#ffffff; --surface:#f3f5fa; --fg:#151a2e; --muted:#5b627d; --line:#d6dbe8;
+  --hsc:#0b7f76; --accent:#0b7f76; --hc:#6aa9b4; --hp:#cf7a26; --none:#c9cedc;
+  --lcd-bg:#08090a; --lcd-fg:#fdc92a; --lcd-dim:#8a7018;
   --ok:#23806f; --warn:#b4462f; --pro:#8a5a00; --pro-bg:#fff3d6;
   --t-bleu:#2f6fd6; --t-blanc:#8b93a8; --t-rouge:#c8322b;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
-  --mono:"Share Tech Mono",ui-monospace,"Consolas",monospace;
+  --mono:"Share Tech Mono",ui-monospace,"Consolas",monospace; --big:"Oswald","Arial Narrow",sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#000000; --surface:#11131c; --fg:#eceef6; --muted:#9aa1bd; --line:#262b3e;
-  --hsc:#8f93f7; --accent:#8f93f7; --hc:#5cc6bb; --hp:#efa257; --none:#3a4060;
-  --lcd-bg:#08090a; --lcd-fg:#ffb547; --lcd-dim:#6a5526; --ok:#5cc6bb; --warn:#f08a70; --pro:#ffc861; --pro-bg:#2c2412;
-  --t-bleu:#6c9ff0; --t-blanc:#c3c8d6; --t-rouge:#f0665e; color-scheme:dark}}
+  --bg:#000000; --surface:#1C1C1E; --card2:#2C2C2E; --fg:#F2F2F7; --fg2:#D1D1D6; --muted:#98989D; --line:#3A3A3C;
+  --hsc:#46C8C7; --accent:#FDC92A; --hc:#1F5A5A; --hp:#3A3A3C; --none:#1C1C1E;
+  --lcd-bg:#000000; --lcd-fg:#FDC92A; --lcd-dim:#8a7018; --ok:#30D158; --warn:#FF6961; --pro:#FDC92A; --pro-bg:#2a2410;
+  --t-bleu:#0A84FF; --t-blanc:#E5E5EA; --t-rouge:#FF453A; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#000000; --surface:#11131c; --fg:#eceef6; --muted:#9aa1bd; --line:#262b3e;
-  --hsc:#8f93f7; --accent:#8f93f7; --hc:#5cc6bb; --hp:#efa257; --none:#3a4060;
-  --lcd-bg:#08090a; --lcd-fg:#ffb547; --lcd-dim:#6a5526; --ok:#5cc6bb; --warn:#f08a70; --pro:#ffc861; --pro-bg:#2c2412;
-  --t-bleu:#6c9ff0; --t-blanc:#c3c8d6; --t-rouge:#f0665e; color-scheme:dark}
+  --bg:#000000; --surface:#1C1C1E; --card2:#2C2C2E; --fg:#F2F2F7; --fg2:#D1D1D6; --muted:#98989D; --line:#3A3A3C;
+  --hsc:#46C8C7; --accent:#FDC92A; --hc:#1F5A5A; --hp:#3A3A3C; --none:#1C1C1E;
+  --lcd-bg:#000000; --lcd-fg:#FDC92A; --lcd-dim:#8a7018; --ok:#30D158; --warn:#FF6961; --pro:#FDC92A; --pro-bg:#2a2410;
+  --t-bleu:#0A84FF; --t-blanc:#E5E5EA; --t-rouge:#FF453A; color-scheme:dark}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.45}
 .wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 110px;display:flex;flex-direction:column;gap:16px}
 h1{font-family:var(--display);font-weight:800;font-size:1.5rem;margin:0;letter-spacing:-.01em;text-wrap:balance}
@@ -56,7 +57,7 @@ h2{font-family:var(--display);font-weight:600;font-size:1.1rem;margin:0}
 .muted{color:var(--muted)}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .between{justify-content:space-between}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel{background:var(--surface);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 button{font:inherit;color:inherit;cursor:pointer}
 a{color:var(--accent)}
 button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -68,11 +69,11 @@ input[type=number]{width:5em}
 .seg button[aria-pressed=true]{background:var(--fg);color:var(--bg);font-weight:700}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 13px;min-height:44px;font-size:.92rem;display:inline-flex;gap:6px;align-items:center}
-.chip[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:var(--surface);font-weight:700}
-.chip .star{color:var(--hp)}
+.chip[aria-pressed=true]{border-color:var(--fg);background:var(--fg);color:var(--bg);font-weight:700}
+.chip .star{color:var(--accent)}
 .chip[aria-pressed=true] .star,.chip[aria-pressed=true] .muted{color:inherit}
 .btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;min-height:44px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;color:var(--fg)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn.primary{background:var(--fg);border-color:var(--fg);color:var(--bg)}
 .btn.danger{color:var(--warn)}
 .btn.small{padding:5px 12px;font-size:.85rem;min-height:44px}
 .btn.done{background:transparent;border-color:var(--ok);color:var(--ok);cursor:default;animation:pop .35s ease-out}
@@ -81,13 +82,37 @@ input[type=number]{width:5em}
 .icon-btn{border:0;background:none;padding:6px 8px;min-width:44px;min-height:44px;border-radius:8px;color:var(--muted);font-size:1.1rem;line-height:1}
 .badge-pro{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pro);background:var(--pro-bg);border-radius:6px;padding:2px 6px}
 
-.lcd{background:var(--lcd-bg);border-radius:18px;padding:18px 20px;color:var(--lcd-fg);display:flex;flex-direction:column;gap:6px;box-shadow:inset 0 0 0 3px #2a2c26,0 6px 20px rgba(0,0,0,.18)}
-.lcd .lbl{font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lcd-dim)}
-.lcd .big{font-family:var(--mono);font-size:clamp(3.6rem,20vw,6.2rem);line-height:1;letter-spacing:.02em;text-shadow:0 0 18px rgba(255,181,71,.35)}
-.lcd .big small{font-size:.45em;margin-left:.1em}
-.lcd .times{font-family:var(--mono);font-size:1.05rem;display:flex;gap:18px;flex-wrap:wrap;color:var(--lcd-dim)}
-.lcd .times b{font-weight:400;color:var(--lcd-fg)}
-.lcd.off .big{color:var(--lcd-dim);text-shadow:none}
+.brand{font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.01em;margin:0}
+.brand span{color:var(--accent)}
+.appls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 52px;gap:8px}
+.appl{border:0;background:var(--surface);color:var(--fg2);border-radius:16px;padding:10px 2px;min-height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-size:.7rem;font-weight:700;min-width:0;text-align:center}
+.appl span{max-width:100%;overflow-wrap:anywhere;line-height:1.15}
+.appl.locked-t{opacity:.75}
+.appl[aria-pressed=true]{background:var(--accent);color:#000}
+.appl.add{background:none;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--muted);width:52px;height:52px;min-height:52px;padding:0;align-self:center}
+.appl svg{width:28px;height:28px}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding-block:14px 6px}
+.hero .lbl{font-size:.75rem;font-weight:700;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.hero .big{font-family:var(--big);font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent);font-size:clamp(6rem,36vw,9.5rem);line-height:1;text-shadow:0 0 22px rgba(253,201,42,.28)}
+.hero .big small{font-size:.38em;margin-left:.05em}
+.hero .sub{font-size:1.05rem;color:var(--fg2)}
+.hero .sub b{color:var(--fg)}
+.hero.off .big{color:var(--line);text-shadow:none}
+.slotline{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px}
+.slot{border-radius:999px;padding:4px 12px;font-size:.85rem;font-weight:700}
+.slot.ok{background:rgba(70,200,199,.16);color:var(--hsc)}
+.slot.bad{background:rgba(255,105,97,.16);color:var(--warn)}
+.cost{font-size:.85rem;color:var(--fg2);font-variant-numeric:tabular-nums}
+.cost .good,.save .good{color:var(--ok)}
+.save{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.save .amt{font-family:var(--display);font-size:1.7rem;font-weight:800;color:var(--ok);font-variant-numeric:tabular-nums;line-height:1.1}
+details.opts{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+details.opts summary{list-style:none;padding:0 16px;min-height:48px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700;color:var(--fg2)}
+details.opts summary::-webkit-details-marker{display:none}
+details.opts summary::after{content:"Modifier";color:var(--accent);font-size:.9rem}
+details.opts[open] summary::after{content:"Fermer"}
+details.opts summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details.opts .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
 .saving{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;font-variant-numeric:tabular-nums}
 .saving strong{font-family:var(--display);font-size:1.5rem;color:var(--ok)}
 .status{display:inline-flex;align-items:center;gap:8px;font-size:.9rem}
@@ -98,12 +123,14 @@ input[type=number]{width:5em}
 .tp-bleu{background:var(--t-bleu)} .tp-blanc{background:var(--t-blanc);color:#141824} .tp-rouge{background:var(--t-rouge)} .tp-inconnu{background:var(--none);color:var(--fg)}
 .banner-rouge{border:2px solid var(--t-rouge)}
 
-.tl{position:relative;padding-top:22px;padding-bottom:22px}
-.tl-bar{display:flex;height:22px;border-radius:6px;overflow:hidden}
-.tl-bar div{height:100%}
-.tl-mark{position:absolute;top:14px;bottom:14px;width:2px;background:var(--fg)}
-.tl-mark span{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:.7rem;white-space:nowrap;font-weight:700}
-.tl-mark.cyc{background:none;border:2px solid var(--fg);border-radius:4px;top:17px;bottom:17px;width:auto}
+.tl{position:relative;padding-top:20px;padding-bottom:20px;touch-action:pan-y;cursor:pointer;user-select:none;-webkit-user-select:none}
+.tl-bar{display:flex;gap:3px;height:46px}
+.tl-bar div{height:100%;border-radius:9px;min-width:2px}
+.tl-cyc{position:absolute;top:15px;height:56px;border:3px solid var(--accent);border-radius:12px;cursor:grab}
+.tl.dragging .tl-cyc{box-shadow:0 0 0 4px rgba(253,201,42,.25)}
+:root[data-theme="light"] .tl-cyc{box-shadow:0 0 0 2px #fff,inset 0 0 0 2px #fff}
+:root[data-theme="light"] .tl.dragging .tl-cyc{box-shadow:0 0 0 2px #fff,inset 0 0 0 2px #fff,0 0 0 6px rgba(11,127,118,.25)}
+.tl-now{position:absolute;top:0;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .tl-ticks{position:absolute;left:0;right:0;bottom:0;height:16px}
 .tl-ticks span{position:absolute;transform:translateX(-50%);font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
@@ -140,8 +167,8 @@ input[type=number]{width:5em}
 .sw-free input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;border:0;padding:0}
 
 nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:5}
-nav.tabs button{flex:1;max-width:160px;border:0;background:none;padding:12px 4px 14px;font-weight:700;color:var(--muted);font-size:.88rem;border-top:3px solid transparent}
-nav.tabs button[aria-current=page]{color:var(--accent);border-top-color:var(--accent)}
+nav.tabs button{flex:1;max-width:160px;border:0;background:none;padding:12px 4px 14px;font-weight:700;color:var(--muted);font-size:.88rem;border-top:0;min-height:48px}
+nav.tabs button[aria-current=page]{color:var(--accent)}
 </style>
 
 <div class="wrap" id="app"></div>
@@ -150,9 +177,10 @@ nav.tabs button[aria-current=page]{color:var(--accent);border-top-color:var(--ac
 <script>
 const BUILD_PRO=false;
 /* Version gratuite : essai Pro de 7 jours, puis fonctions Pro verrouillées.
-   La version Pro est une appli payante séparée ; le transfert des réglages passe par un code à copier. */
+   Pro se débloque par un achat intégré Google Play (appli Android) ou par un code ami.
+   La version Pro web (differe-malin-pro) reste en ligne pour les testeurs ; le transfert des réglages passe par un code à copier. */
 const TRIAL_DAYS=7, FREE_CYCLES=3, PRICE_LABEL='2,99 €';
-const PRO_STORE_URL='https://play.google.com/store/apps/details?id=fr.differemalin.pro'; // à remplacer par l'identifiant réel
+const STORE_URL='https://play.google.com/store/apps/details?id=fr.differemalin';
 const K=BUILD_PRO?'dlp-':'dlf-';
 function lsGet(k){try{return localStorage.getItem(K+k)}catch(e){return null}}
 function lsSet(k,v){try{localStorage.setItem(K+k,v)}catch(e){}}
@@ -163,7 +191,13 @@ const trialLeft=()=>BUILD_PRO||!trialStart?0:Math.max(0,Math.ceil((trialStart+TR
 const UNLOCK_SALT='differe-malin:';
 const UNLOCK_HASHES=["3d200e24e322976c4ecd0b7e9975f8181371c41fd55610764030105c31fb0628", "037d33eec4ad596c8222a24969b7bcd5b169a9f61755356c6c9d14af292305df", "d9daafe5267c7d9c094fbda1106236ad162ff1da9ae7d9d57b538fa658d295c4", "02dedca9230c2263371dbc3ffb4f100d1345bca2f7f4a5c5a2374c3051887732", "d07c37d749b0bc55fb5609f3f177fb235d184ebc953317811486483f6e0369dc", "59edcef45c8a23ce690ae32b6b437c263cf0e77db7d9dc79fb1019f2f2b2e7e6", "ef82d36973e72c80be055f2191879f27da260c43e1913887369dd231d922f61a", "60d7cef249539453beb6f8886056ec2a9c4b615dc3b3bb5cbe27a274a8eb76cc", "df8780438315c8a35ce8030c6256d6d233554b0cfff3469acd378962b7626caf", "2041363346f1cc3fb79fa15481876dd6ed62509271d73819683f1cf2669bb0b9", "83944df9cd1c4f0dd480a19bb88be45c7333da56daa4c2c607ce820f17e2435c", "ea0f3de1f1712da7b2ba5b82b7618c6d57a9a2baadbcd683c86ec9c2399db158", "4e84a6a5da67681f23c07fd4306ef26d9c912f1ec8241ca2ffa9f9e99aa95fec", "46230eb8149f37f6cd79eaca3b463ca9c162e684a95ecab6b834171b45b24ba2", "f484e42b31b34a8b84eeeff096e175bca5cc88d0ede7fdedb282b07db1ab0cdc", "42b2463998b8248501ad42a764d16945953164ae5c5a0024ac5b2b7975b0a4bd", "7a36c067bb1108653ea72a95f55170cedf46f092b71fd66f09ea9ec6a4754cd9", "c06854752117ac0c7fffa65557c3cca6543b896a86dfc15fd999f8d8d5635e57", "acd0aceb55c5f69f030e4f86c446f6106dd4982d7de868892a870cd0fd629647", "2b60ae91d968fb91c0a185d5abfb76820dc00b52234e8670e5026bcddde654e5"];
 let unlocked=!BUILD_PRO&&lsGet('unlock')==='1';
-const pro=()=>BUILD_PRO||unlocked||trialLeft()>0;
+/* Achat intégré Google Play (seulement dans l'appli Android installée depuis le Play Store).
+   Le jeton d'achat est envoyé au petit serveur Applis Malines, qui le confirme auprès de Google
+   (sans confirmation sous 3 jours, Google rembourse et retire l'achat). Rien d'autre n'est envoyé. */
+const PLAY_BILLING='https://play.google.com/billing', PLAY_APP='fr.differemalin', PLAY_PRODUIT='pro';
+const VERIF_URL=''; // adresse du serveur, ex. 'https://achats-applismalines.<compte>.workers.dev/verifier' (vide = achat désactivé)
+let achete=lsGet('achat')==='1';
+const pro=()=>BUILD_PRO||unlocked||achete||trialLeft()>0;
 async function tryUnlock(code){code=(code||'').toUpperCase().replace(/\s/g,'');if(!code)return false;
   if(!(window.crypto&&crypto.subtle))throw new Error('nocrypto');
   const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(UNLOCK_SALT+code));
@@ -222,7 +256,7 @@ async function scanQR(ai,file){const a=A[ai];a.label=a.label||{};
 if(!S.colors)S.colors={hsc:null,hc:null,hp:null};
 if(!S.theme)S.theme='auto';
 if(!S.target)S.target='auto';
-function applyTheme(){const r=document.documentElement;if(S.theme==='light'||S.theme==='dark')r.setAttribute('data-theme',S.theme);else r.removeAttribute('data-theme');
+function applyTheme(){const r=document.documentElement;r.setAttribute('data-theme',S.theme==='light'?'light':'dark');
   const m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',getComputedStyle(r).getPropertyValue('--bg').trim()||'#121410')}
 const visAppl=()=>pro()?A:A.slice(0,1);
 const visCycles=a=>pro()?a.cycles:a.cycles.slice(0,FREE_CYCLES);
@@ -291,9 +325,12 @@ function tempoColor(t){return ui.tempo[tempoDay(t)]||null}
 function price(type,t){
   if(S.tempo){const c=tempoColor(t)||'bleu',p=S.tempoPrices[c];return p?(type==='hp'?p.hp:p.hc):null}
   const s=seasonFor(dayStart(t));return s&&s.price?s.price[type]:null}
-function economics(cycle,sel,ap){const kwh=cycKwh(ap||curAppl(),cycle);if(!kwh)return null;const ty=sel.w.type;
-  const pT=price(ty,sel.st),pH=price('hp',sel.st);if(pT==null||pH==null)return null;
-  return {kwh,cost:kwh*pT,peak:kwh*pH,saving:kwh*(pH-pT)}}
+/* Coût réel du cycle, plage par plage (consommation répartie sur la durée) */
+function costOf(ap,cyc,st){const kwh=cycKwh(ap,cyc),dur=cyc.dur;if(!kwh)return null;let cost=0;
+  for(let m=0;m<dur;m+=5){const t=st+m*6e4,p=price(classify(t)||'hp',t);if(p==null)return null;cost+=p*kwh*Math.min(5,dur-m)/dur}return cost}
+function economics(cycle,sel,ap){ap=ap||curAppl();const kwh=cycKwh(ap,cycle);if(!kwh)return null;
+  const cost=costOf(ap,cycle,sel.st),pH=price('hp',sel.st);if(cost==null||pH==null)return null;
+  return {kwh,cost,peak:kwh*pH,saving:kwh*pH-cost}}
 async function fetchTempo(){if(!pro()||!S.tempo)return;
   for(const which of ['today','tomorrow']){try{
     const r=await fetch('https://www.calendrier-tempo.fr/api/'+which,{cache:'no-store'});const j=await r.json();
@@ -325,92 +362,148 @@ function tempoBanner(now){if(!pro()||!S.tempo)return '';
   if(!cM)h+=`<div class="row"><span class="note">Couleur de demain non publiée (annonce vers 11h). La fixer :</span>${Object.keys(COLORS).map(c=>`<button class="btn small" data-tman="${tm}|${c}">${COLORS[c]}</button>`).join('')}</div>`;
   return h+`</div>`}
 
+/* ---------- Écran Différé : la réponse d'abord, frise à glisser, options repliées ---------- */
+const SPAN=27*36e5,pctOf=(t,now,span)=>Math.min(100,Math.max(0,(t-now)/span*100));
+const ICONS={
+  wash:'<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="20" height="22" rx="3"/><circle cx="14" cy="15" r="6"/><path d="M8 7h3"/></svg>',
+  dish:'<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="20" height="22" rx="3"/><path d="M4 9h20M9 14h10M9 19h10"/></svg>',
+  dryer:'<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="20" height="22" rx="3"/><circle cx="14" cy="15" r="6"/><path d="M11 14c1-1 2 1 3 0s2 1 3 0"/></svg>',
+  other:'<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3 7 16h6l-1 9 8-13h-6z"/></svg>',
+  plus:'<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 7v14M7 14h14"/></svg>'};
+const PER_YEAR={wash:200,dish:250,dryer:100,other:100};
+function cyclesPerYear(ap){const mine=H.filter(x=>x.ap===ap.id);
+  if(mine.length>=4){const t0=Math.min(...mine.map(x=>x.at||x.t)),days=(Date.now()-t0)/864e5;if(days>=14)return {n:Math.round(mine.length/days*365),real:true}}
+  return {n:PER_YEAR[kindOf(ap)],real:false}}
+/* Tous les réglages possibles sur la machine, même hors des heures creuses (pour le cadre à glisser) */
+function allPositions(now,ap,cyc){const out=[],dur=cyc.dur*6e4;
+  if(ap.noDelay){const t0=Math.ceil(now/(5*6e4))*5*6e4;for(let st=t0;st<=now+24*36e5;st+=5*6e4)out.push({k:Math.round((st-now)/6e4),st,en:st+dur,launch:true});return out}
+  const step=Math.max(5,+ap.step||60);
+  for(let k=(+ap.minDelay||0)*60;k<=(+ap.maxDelay||24)*60;k+=step){let st,en;
+    if(ap.mode==='start'){st=now+k*6e4;en=st+dur}else{en=now+k*6e4;st=en-dur;if(st<now)continue}
+    out.push({k,st,en})}
+  return out}
+const prefer=res=>{if(!res.length)return null;const first=res[0].w.s,pool=res.filter(r=>r.w.s===first);return pool[0].launch?pool[0]:pool[pool.length-1]};
+function currentSel(now,ap,cyc){const ws=windows(now),res=candidates(now,cyc.dur,ap,ws),all=allPositions(now,ap,cyc);
+  let sel=choose(res,now);
+  if(ui.pick!=null&&(!sel||sel.k!==ui.pick)){const f=all.find(r=>r.k===ui.pick);if(f)sel=f}
+  const best=prefer(res);return {ws,res,all,sel,best,bestCost:best?costOf(ap,cyc,best.st):null}}
+function mix(st,dur){const o={hsc:0,hc:0,hp:0,none:0};for(let m=0;m<dur;m+=5)o[classify(st+m*6e4)||'none']+=Math.min(5,dur-m);return o}
+function plageTxt(sel,cyc){const mx=mix(sel.st,cyc.dur),parts=['hsc','hc','hp'].filter(t=>mx[t]>0);
+  return {bad:mx.hp>0,txt:parts.length===1?`Tout en heures ${TYPES[parts[0]].toLowerCase()}`:parts.map(t=>`${fDur(mx[t])} en ${TYPES[t].toLowerCase()}`).join(' · ')}}
+function pctLine(sel,ap,cyc,bestCost){if(!pro())return '';const ec=economics(cyc,sel,ap);if(!(ec&&ec.peak>0))return '';
+  const pc=Math.round(ec.saving/ec.peak*100),pb=bestCost!=null?Math.round((ec.peak-bestCost)/ec.peak*100):null;
+  return `${pc>0?`<b class="good">${pc} % moins cher</b> qu'en heures pleines`:`Prix des heures pleines`}${pb!=null&&pb-pc>=1?` · le meilleur créneau fait <b class="good">−${pb} %</b>`:pb!=null&&pc>0?' · c\'est le meilleur créneau':''}`}
+function slotLine(sel,ap,cyc,bestCost){const pt=plageTxt(sel,cyc),pl=pctLine(sel,ap,cyc,bestCost);
+  return `<span class="slot ${pt.bad?'bad':'ok'}">${pt.txt}</span>${pl?`<span class="cost">${pl}</span>`:''}`}
+function heroInner(sel,ap,cyc,now,bestCost){
+  const big=sel.launch?`<span class="lbl">Pas de différé · lance-le à la main à</span><div class="big">${fT(sel.st).replace(':','<small>h</small>')}</div>
+      <span class="sub">${esc(cyc.name)} · se termine à <b>${fT(sel.en)}</b> ${esc(dayLbl(sel.en,now))}</span>`
+    :`<span class="lbl">${ap.mode==='start'?'Départ différé à régler':'Fin différée à régler'}</span>
+      <div class="big">${Math.floor(sel.k/60)}<small>h${sel.k%60?pad(sel.k%60):''}</small></div>
+      <span class="sub">${esc(cyc.name)} · départ ${fT(sel.st)} · se termine à <b>${fT(sel.en)}</b> ${esc(dayLbl(sel.en,now))}</span>`;
+  return big+`<div class="slotline">${slotLine(sel,ap,cyc,bestCost)}</div>`}
+function segsHTML(now){const end=now+SPAN,segs=[];let cur=null;
+  for(let t=now;t<end;t+=5*6e4){const ty=classify(t)||'none';if(cur&&cur.ty===ty)cur.n++;else{cur={ty,n:1};segs.push(cur)}}
+  return `<div class="tl-bar">${segs.map(s=>`<div class="t-${s.ty}" style="flex:${s.n} 1 0"></div>`).join('')}</div>`}
+const cycStyle=(r,now,span,c)=>{const warn=c&&mix(r.st,c.cyc.dur).hp>0;
+  return `left:calc(${pctOf(r.st,now,span)}% - 3px);width:calc(${pctOf(r.en,now,span)-pctOf(r.st,now,span)}% + 6px);border-color:${warn?'var(--warn)':'var(--accent)'}`};
+function frise(now,sel){
+  const end=now+SPAN;let ticks='';const first=new Date(now);first.setMinutes(0,0,0);
+  for(let t=first.getTime()+36e5;t<end;t+=36e5){const hh=new Date(t).getHours();if(hh%6===0){const p=pctOf(t,now,SPAN);if(p>5&&p<95)ticks+=`<span style="left:${p}%">${pad(hh)}h</span>`}}
+  return `<div><div class="tl" data-tl="main">
+    <span class="tl-now" style="left:0">${fT(now)}</span>${segsHTML(now)}
+    ${sel?`<div class="tl-cyc" style="${cycStyle(sel,now,SPAN,DRAG.ctx)}" role="img" aria-label="Ton cycle"></div>`:''}
+    <div class="tl-ticks">${ticks}</div></div>
+    <div class="legend"><span><i class="dot t-hsc"></i>Super creuses</span><span><i class="dot t-hc"></i>Creuses</span><span><i class="dot t-hp"></i>Pleines</span></div>
+    ${sel?`<div class="row between" style="margin-top:6px"><p class="note" style="flex:1;min-width:12em">Fais glisser le cadre : tu vois la plage${pro()?' et le coût':''} du créneau.</p>${ui.pick!=null?`<button class="btn small" data-pickreset>Meilleur créneau</button>`:''}</div>`:''}</div>`}
+/* Glisser le cadre : il se pose sur n'importe quel réglage possible, la plage et le prix se mettent à jour */
+const DRAG={ctx:null,on:false,live:null,el:null};
+function dragAt(e){const c=DRAG.ctx,tl=DRAG.el;if(!c||!tl)return;
+  const rc=tl.getBoundingClientRect(),x=Math.min(1,Math.max(0,(e.clientX-rc.left)/rc.width));
+  const want=c.now+x*c.span-c.cyc.dur*6e4/2;let best=c.all[0];for(const r of c.all)if(Math.abs(r.st-want)<Math.abs(best.st-want))best=r;
+  if(!best||DRAG.live===best)return;DRAG.live=best;
+  const f=tl.querySelector('.tl-cyc');if(f)f.setAttribute('style',cycStyle(best,c.now,c.span,c));
+  const hr=document.getElementById('hero');if(hr)hr.innerHTML=heroInner(best,c.ap,c.cyc,c.now,c.bestCost)}
+app.addEventListener('pointerdown',e=>{const tl=e.target.closest('[data-tl]');if(!tl||!DRAG.ctx||!DRAG.ctx.all.length||!tl.querySelector('.tl-cyc'))return;
+  DRAG.on=true;DRAG.live=null;DRAG.el=tl;tl.classList.add('dragging');try{tl.setPointerCapture(e.pointerId)}catch(_){}dragAt(e)});
+app.addEventListener('pointermove',e=>{if(DRAG.on)dragAt(e)});
+function dragEnd(keep){if(!DRAG.on)return;DRAG.on=false;if(keep&&DRAG.live){ui.pick=DRAG.live.k;ui.endPref='latest'}DRAG.live=null;render()}
+app.addEventListener('pointerup',()=>dragEnd(true));app.addEventListener('pointercancel',()=>dragEnd(false));
+app.addEventListener('toggle',e=>{if(e.target&&e.target.id==='opts')ui.optsOpen=e.target.open},true);
+
 function renderCalc(){
-  const now=getNow(),ap=curAppl(),nowType=classify(now);
-  let h=`<div class="row between"><h1>Différé Malin${pro()?' '+proTag():''}</h1>
-    <span class="status"><span class="dot t-${nowType||'none'}"></span>${nowType?'Heures '+TYPES[nowType].toLowerCase():'Plage non définie'}</span></div>`;
+  const now=getNow(),ap=curAppl(),nowType=classify(now),vis=visAppl();
+  let h=`<div class="row between"><h1 class="brand">Différé <span>Malin</span></h1>
+    <span class="status"><span class="dot t-${nowType||'none'}"></span>${nowType?'Heures '+TYPES[nowType].toLowerCase():'Plage non définie'} · ${fT(now)}</span></div>`;
   h+=trialBanner()+tempoBanner(now);
-  h+=`<div class="panel"><div class="row between"><span class="eyebrow">Heure de référence</span>
-     <div class="seg"><button data-tm="phone" aria-pressed="${ui.timeMode==='phone'}">Locale</button><button data-tm="manual" aria-pressed="${ui.timeMode==='manual'}">Saisir</button></div></div>`;
-  h+=ui.timeMode==='phone'?`<div style="font-family:var(--mono);font-size:1.6rem">${fT(now)} <span class="muted" style="font-size:.9rem;font-family:var(--body)">${new Date(now).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</span></div>`
-    :`<div class="row"><input type="date" id="mDate" value="${esc(ui.mDate)}" aria-label="Date"><input type="time" id="mTime" value="${esc(ui.mTime)}" aria-label="Heure"></div>`;
-  h+=`</div>`;
+  h+=`<div class="appls" role="group" aria-label="Appareil">${A.slice(0,3).map((a,i)=>{const lock=!pro()&&i>0;return lock?`<button class="appl locked-t" data-tab-go="appl" aria-label="${esc(a.name)} (Pro)">${ICONS[kindOf(a)]}<span>${esc(a.name)}</span>${proTag()}</button>`:`<button class="appl" data-appl="${esc(a.id)}" aria-pressed="${!!ap&&a.id===ap.id}">${ICONS[kindOf(a)]}<span>${esc(a.name)}</span></button>`}).join('')}
+    <button class="appl add" data-tab-go="appl" aria-label="Ajouter un appareil">${ICONS.plus}</button></div>`;
+  if(vis.length>3&&ap&&vis.indexOf(ap)>2)h+=`<div class="chips">${vis.slice(3).map(a=>`<button class="chip" data-appl="${esc(a.id)}" aria-pressed="${a.id===ap.id}">${esc(a.name)}</button>`).join('')}</div>`;
   if(!ap){app.innerHTML=h+`<p class="alert">Ajoute un appareil dans l'onglet Appareils.</p>`;return}
   const cyc=curCycle(ap);
-  h+=`<div class="panel">`;
-  if(visAppl().length>1)h+=`<span class="eyebrow">Appareil</span><div class="chips">${visAppl().map(a=>`<button class="chip" data-appl="${esc(a.id)}" aria-pressed="${a.id===ap.id}">${esc(a.name)}</button>`).join('')}</div>`;
-  if(!cyc){h+=`<p class="alert">Aucun cycle pour cet appareil.</p></div>`;app.innerHTML=h;return}
+  if(!cyc){app.innerHTML=h+`<p class="alert">Aucun cycle pour cet appareil.</p>`;return}
   const list=[...visCycles(ap)].sort((a,b)=>b.fav-a.fav);
-  h+=`<span class="eyebrow">Lancer en heures</span>${targetSeg()}`;
-  h+=`<span class="eyebrow">Cycle</span><div class="chips">${list.map(c=>`<button class="chip" data-cyc="${esc(c.id)}" aria-pressed="${c.id===cyc.id}">${c.fav?'<span class="star">★</span>':''}${esc(c.name)} · ${fDur(c.dur)}</button>`).join('')}</div>`;
-  if(pro())h+=`<span class="eyebrow">Fin du cycle</span><div class="row"><div class="seg">
-      <button data-ep="latest" aria-pressed="${ui.endPref==='latest'}">Au plus tard</button><button data-ep="earliest" aria-pressed="${ui.endPref==='earliest'}">Au plus tôt</button><button data-ep="target" aria-pressed="${ui.endPref==='target'}">Vers…</button></div>
-      ${ui.endPref==='target'?`<input type="time" id="endAt" value="${esc(ui.endAt)}" aria-label="Heure de fin souhaitée">`:''}</div>`;
-  h+=`</div>`;
-  const ws=windows(now),res=candidates(now,cyc.dur,ap,ws),sel=choose(res,now);
-  if(sel){const tLbl=TYPES[sel.w.type].toLowerCase();
-    if(sel.launch){
-      h+=`<div class="lcd"><span class="lbl">Pas de différé · lancer à la main</span><div class="big">${fT(sel.st).replace(':','<small>h</small>')}</div>
-        <div class="times"><span>FIN <b>${fT(sel.en)}</b></span><span>${esc(dayLbl(sel.st,now))}</span></div></div>`;
-    }else{
-      h+=`<div class="lcd"><span class="lbl">À régler sur la machine · ${ap.mode==='start'?'départ différé':'fin différée'}</span>
-        <div class="big">${Math.floor(sel.k/60)}<small>h${sel.k%60?pad(sel.k%60):''}</small></div>
-        <div class="times"><span>DÉPART <b>${fT(sel.st)}</b></span><span>FIN <b>${fT(sel.en)}</b></span><span>${esc(dayLbl(sel.st,now))}</span></div></div>`;
-    }
-    h+=`<p class="note">Plage ${tLbl} ${fT(sel.w.s)} → ${fT(sel.w.e)}, marge de ${S.margin} min de chaque côté.</p>`;
-    {const ec=economics(cyc,sel,ap);
-      h+=`<div class="panel">`;
-      if(pro()){
-        const est=!isLabel(cyc),ap_=est?'≈ ':'',srcT=est?'<b>estimation</b>':'<b>valeur officielle de l\'étiquette</b>';
-        if(ec&&sel.w.type==='hp')h+=`<p class="note">Cycle en heures pleines : coût ${ap_}${eur(ec.cost)}, pas d'économie · ${fK(ec.kwh)} kWh · ${srcT}</p>`;
-        else if(ec)h+=`<div class="saving"><strong>${ap_}${eur(ec.saving)}</strong><span>d'économie${est?' estimée':''} par rapport aux heures pleines</span></div><p class="note">Coût du cycle ${ap_}${eur(ec.cost)} au lieu de ${ap_}${eur(ec.peak)} · ${fK(ec.kwh)} kWh · ${srcT}${S.tempo?' · jour '+(tempoColor(sel.st)?COLORS[tempoColor(sel.st)].toLowerCase():'bleu (supposé)'):''}</p>`;
-        else h+=`<p class="note">Renseigne tes prix dans Réglages et la consommation du cycle pour voir l'économie.</p>`;
-      }else h+=teaser();
-      h+=`<div class="row">${(()=>{const lg=recentLog(ap,cyc);return lg?`<button class="btn done" disabled>✓ Ajouté à l'historique</button><button class="btn small" data-unlog="${esc(lg.id)}">Annuler</button><span class="note" role="status">à ${fT(lg.at)}</span>`:`<button class="btn primary" data-log="${sel.k}">J'ai lancé ce cycle</button>`})()}
-        ${pro()&&sel.launch?`<a class="btn" target="_blank" rel="noopener" href="${gcalLink('Lancer '+ap.name+' – '+cyc.name,sel.st)}">Rappel dans l'agenda</a>`:''}</div></div>`}
-    if(res.length>1){const L=[...res].reverse();const show=sel.launch?L.filter((r,i)=>i%6===0||r===sel):L;
-      h+=`<div class="panel"><span class="eyebrow">Autres possibilités (du plus tardif au plus tôt)</span><div class="chips">${show.map(r=>`<button class="chip" data-pick="${r.k}" aria-pressed="${r===sel}">${r.launch?fT(r.st):fDur(r.k)} <span class="muted" style="font-size:.8em">fin ${fT(r.en)}</span></button>`).join('')}</div></div>`}
-  }else{
+  h+=`<div class="chips">${list.map(c=>`<button class="chip" data-cyc="${esc(c.id)}" aria-pressed="${c.id===cyc.id}">${c.fav?'<span class="star">★</span>':''}${esc(c.name)} · ${fDur(c.dur)}</button>`).join('')}</div>`;
+  const cs_=currentSel(now,ap,cyc),ws=cs_.ws,res=cs_.res,sel=cs_.sel;
+  DRAG.ctx={all:cs_.all,now,ap,cyc,span:SPAN,bestCost:cs_.bestCost};
+  if(sel){h+=`<div class="hero" id="hero">${heroInner(sel,ap,cyc,now,cs_.bestCost)}</div>`}
+  else{
     let msg='',found=null;const longest=Math.max(0,...ws.map(w=>(w.e-w.s)/6e4));
-    if(!ws.length)msg=`Ton offre n'a pas d'heures ${TYPES[S.target].toLowerCase()} sur cette période. Choisis une autre plage.`;
+    if(!ws.length)msg=`Ton offre n'a pas d'heures ${TYPES[S.target]?TYPES[S.target].toLowerCase():'creuses'} sur cette période. Choisis une autre plage dans les options.`;
     else if(longest<cyc.dur+2*S.margin)msg=`Ce cycle (${fDur(cyc.dur)}) est plus long que ${targetLbl()} (${fDur(Math.round(longest))}).`;
     else{const ws2=windows(now,5);for(let t=now+5*6e4;t<now+48*36e5;t+=5*6e4){if(candidates(t,cyc.dur,ap,ws2).length){found=t;break}}
       msg=`Aucun différé entre ${ap.minDelay} h et ${ap.maxDelay} h ne fait tenir ce cycle dans ${targetLbl()}.`+(found?` Possible à partir de ${fT(found)} (${esc(dayLbl(found,now))}).`:'')}
-    h+=`<div class="lcd off"><span class="lbl">À régler sur la machine</span><div class="big">--<small>h</small></div></div><p class="alert">${msg}</p>`;
+    h+=`<div class="hero off"><span class="lbl">Différé à régler</span><div class="big">--<small>h</small></div></div><p class="alert">${msg}</p>`;
     if(pro()&&found)h+=`<a class="btn" style="align-self:flex-start" target="_blank" rel="noopener" href="${gcalLink('Programmer '+ap.name+' – '+cyc.name,found)}">Rappel à ${fT(found)} dans l'agenda</a>`;
   }
-  const span=27*36e5,end=now+span,segs=[];let cur=null;
-  for(let t=now;t<end;t+=5*6e4){const ty=classify(t)||'none';if(cur&&cur.ty===ty)cur.n++;else{cur={ty,n:1};segs.push(cur)}}
-  const tot=segs.reduce((a,s)=>a+s.n,0),pct=t=>Math.min(100,Math.max(0,(t-now)/span*100));
-  let ticks='';const first=new Date(now);first.setMinutes(0,0,0);
-  for(let t=first.getTime()+36e5;t<end;t+=36e5){const hh=new Date(t).getHours();if(hh%6===0){const p=pct(t);if(p>4&&p<96)ticks+=`<span style="left:${p}%">${pad(hh)}h</span>`}}
-  h+=`<div class="panel"><span class="eyebrow">Les prochaines 27 heures</span><div class="tl">
-    <div class="tl-bar">${segs.map(s=>`<div class="t-${s.ty}" style="width:${s.n/tot*100}%"></div>`).join('')}</div>
-    <div class="tl-mark" style="left:0"><span style="left:0;transform:none">${fT(now)}</span></div>
-    ${sel?`<div class="tl-mark cyc" style="left:${pct(sel.st)}%;width:${pct(sel.en)-pct(sel.st)}%"><span>cycle</span></div>`:''}
-    <div class="tl-ticks">${ticks}</div></div>
-    <div class="legend"><span><i class="dot t-hsc"></i>Super creuses</span><span><i class="dot t-hc"></i>Creuses</span><span><i class="dot t-hp"></i>Pleines</span></div></div>`;
+  h+=frise(now,sel);
+  if(sel){const ec=economics(cyc,sel,ap),est=!isLabel(cyc),ap_=est?'≈ ':'',srcT=est?'estimation':'valeur officielle de l\'étiquette';
+    h+=`<div class="panel"><div class="save"><div>`;
+    if(pro()){
+      const cpy=cyclesPerYear(ap);
+      if(ec&&ec.saving<0.005){const yl=ec.peak>0&&cs_.bestCost!=null?(ec.peak-cs_.bestCost)*cpy.n:null;
+        h+=`<span class="note">Pas d'économie sur ce créneau</span>${yl>0.5?`<div class="amt" style="color:var(--warn)">${ap_}${eur(yl)} <span style="font-size:.55em">par an</span></div><span class="note">perdus si tu lances toujours en heures pleines</span>`:''}`}
+      else if(ec)h+=`<div class="year"><span class="note">Si tu fais pareil à chaque fois</span><div class="amt">${ap_}${eur(ec.saving*cpy.n)} <span style="font-size:.55em">par an</span></div>
+        <span class="note">pour ${cpy.n} cycles par an${cpy.real?', ton rythme':' (rythme moyen, ajusté avec ton historique)'}</span></div>`;
+      else h+=`<span class="note">Renseigne tes prix dans Réglages et la consommation du cycle pour voir l'économie.</span>`;
+    }else h+=teaser();
+    const lg=recentLog(ap,cyc);
+    h+=`</div>${lg?`<span class="row"><button class="btn done" disabled>✓ Ajouté à l'historique</button><button class="btn small" data-unlog="${esc(lg.id)}">Annuler</button></span>`:`<button class="btn primary" data-log="${sel.k}">J'ai lancé ce cycle</button>`}</div>`;
+    if(pro()&&ec&&ec.saving>=0.005)h+=`<p class="note">Ce cycle : ${ap_}${eur(ec.cost)} au lieu de ${ap_}${eur(ec.peak)}, soit ${Math.round(ec.saving/ec.peak*100)} % de moins · ${fK(ec.kwh)} kWh, ${srcT}${S.tempo?' · jour '+(tempoColor(sel.st)?COLORS[tempoColor(sel.st)].toLowerCase():'bleu (supposé)'):''}</p>`;
+    if(pro()&&sel.launch)h+=`<a class="btn" style="align-self:flex-start" target="_blank" rel="noopener" href="${gcalLink('Lancer '+ap.name+' – '+cyc.name,sel.st)}">Rappel dans l'agenda</a>`;
+    h+=`</div>`}
+  h+=`<details class="opts" id="opts"${ui.optsOpen?' open':''}><summary>Options du calcul</summary><div class="inner">
+    <span class="eyebrow">Heure de référence</span>
+    <div class="row"><div class="seg"><button data-tm="phone" aria-pressed="${ui.timeMode==='phone'}">Locale</button><button data-tm="manual" aria-pressed="${ui.timeMode==='manual'}">Saisir</button></div>
+    ${ui.timeMode==='manual'?`<input type="date" id="mDate" value="${esc(ui.mDate)}" aria-label="Date"><input type="time" id="mTime" value="${esc(ui.mTime)}" aria-label="Heure">`:''}</div>
+    <span class="eyebrow">Lancer en heures</span>${targetSeg()}`;
+  if(pro())h+=`<span class="eyebrow">Fin du cycle</span><div class="row"><div class="seg">
+      <button data-ep="latest" aria-pressed="${ui.endPref==='latest'}">Au plus tard</button><button data-ep="earliest" aria-pressed="${ui.endPref==='earliest'}">Au plus tôt</button><button data-ep="target" aria-pressed="${ui.endPref==='target'}">Vers…</button></div>
+      ${ui.endPref==='target'?`<input type="time" id="endAt" value="${esc(ui.endAt)}" aria-label="Heure de fin souhaitée">`:''}</div>`;
+  if(res.length>1){const L=[...res].reverse();const show=sel&&sel.launch?L.filter((r,i)=>i%6===0||(sel&&r.k===sel.k)):L;
+    h+=`<span class="eyebrow">Autres réglages possibles (du plus tardif au plus tôt)</span><div class="chips">${show.map(r=>`<button class="chip" data-pick="${r.k}" aria-pressed="${!!sel&&r.k===sel.k}">${r.launch?fT(r.st):fDur(r.k)} <span class="muted" style="font-size:.8em">fin ${fT(r.en)}</span></button>`).join('')}</div>`}
+  if(sel&&sel.w)h+=`<p class="note">Plage ${TYPES[sel.w.type].toLowerCase()} ${fT(sel.w.s)} → ${fT(sel.w.e)}, marge de ${S.margin} min de chaque côté.</p>`;
+  h+=`</div></details>`;
   if(!pro())h+=proCard();
   app.innerHTML=h;
 }
 
-function trialBanner(){if(BUILD_PRO)return '';if(unlocked)return `<div class="panel pro-card"><div class="row between"><span><b>Pro débloqué</b> · code ami</span>${proTag()}</div></div>`;const n=trialLeft();
+function trialBanner(){if(BUILD_PRO)return '';if(achete)return ui.achatMsg?`<div class="panel pro-card" role="status"><div class="row between"><span><b>Pro débloqué</b></span>${proTag()}</div><p class="note">${esc(ui.achatMsg)}</p></div>`:'';if(unlocked)return `<div class="panel pro-card"><div class="row between"><span><b>Pro débloqué</b> · code ami</span>${proTag()}</div></div>`;const n=trialLeft();
   if(n>0)return `<div class="panel pro-card"><div class="row between"><span><b>Essai Pro</b> · ${n} jour${n>1?'s':''} restant${n>1?'s':''}</span>${proTag()}</div>
     <p class="note">Toutes les fonctions Pro sont ouvertes pendant l'essai. Ensuite, l'appli garde le calcul, un appareil et ${FREE_CYCLES} cycles.</p></div>`;
   return ''}
 function teaser(){const n=H.length;
   return `<div class="saving"><strong style="color:var(--fg)">${n}</strong><span>cycle${n>1?'s':''} lancé${n>1?'s':''} aux heures les moins chères</span></div>
-    <div class="row"><span>Tes économies : <b>🔒 ••,•• €</b></span><a class="btn small" href="${PRO_STORE_URL}" target="_blank" rel="noopener">Voir avec Pro</a></div>`}
-function proCard(){return `<div class="panel pro-card"><div class="row"><h2>Différé Malin Pro</h2>${proTag()}</div><ul>
+    <div class="row"><span>Tes économies : <b>🔒 ••,•• €</b></span><button class="btn small" data-voirpro>Voir avec Pro</button></div>`}
+function proCard(){return `<div class="panel pro-card" id="pro-card"><div class="row"><h2>Différé Malin Pro</h2>${proTag()}</div><ul>
   <li>Tes économies à chaque cycle, du mois et de l'année</li><li>Lave-vaisselle, sèche-linge et autres appareils</li>
   <li>Cycles illimités</li><li>Offre Tempo : couleur du lendemain, jour rouge signalé à l'ouverture</li>
   <li>Fin du cycle à l'heure choisie (réveil, retour du travail)</li><li>Rappel dans l'agenda pour les appareils sans différé</li>
   <li>Tes propres couleurs pour chaque plage</li></ul>
-  <div class="row"><a class="btn primary" href="${PRO_STORE_URL}" target="_blank" rel="noopener">Passer à Pro · ${PRICE_LABEL}</a><span class="note">Achat unique, sans abonnement.</span></div>
-  <p class="note">Tes cycles se transfèrent dans Pro : Réglages, « Transférer mes réglages ».</p></div>`}
+  ${typeof boutonAchat==='function'?boutonAchat():''}</div>`}
 
 function renderAppl(){
-  let h=`<h1>${pro()?'Appareils':'Cycles'}</h1><p class="note">L'étoile marque le cycle proposé par défaut. Les durées et consommations préremplies sont des exemples : remplace-les par celles de tes appareils.</p>`;
+  let h=`<h1>Appareils</h1><p class="note">L'étoile marque le cycle proposé par défaut. Les durées et consommations préremplies sont des exemples : remplace-les par celles de tes appareils.</p>`;
   visAppl().forEach((a,ai)=>{
     h+=`<div class="panel">`;
     if(pro())h+=`<div class="row between"><input id="an-${ai}" data-aname="${ai}" value="${esc(a.name)}" style="font-weight:700;flex:1" aria-label="Nom de l'appareil">${A.length>1?`<button class="icon-btn" data-adel="${ai}" aria-label="Supprimer l'appareil">✕</button>`:''}</div>`;
@@ -448,19 +541,25 @@ function renderAppl(){
   app.innerHTML=h;
 }
 
+/* Projection sur un an : meilleur créneau de chaque appareil (cycle favori) x rythme annuel */
+function yearProjection(){const now=Date.now();let tot=0,n=0;
+  for(const a of A){const c=a.cycles.find(x=>x.fav)||a.cycles[0];if(!c)continue;const best=prefer(candidates(now,c.dur,a,windows(now)));if(!best)continue;
+    const ec=economics(c,best,a);if(ec&&ec.saving>0){tot+=ec.saving*cyclesPerYear(a).n;n++}}
+  return n?tot:null}
 function renderHist(){
   const now=Date.now(),d=new Date(now),m0=new Date(d.getFullYear(),d.getMonth(),1).getTime(),y0=new Date(d.getFullYear(),0,1).getTime();
   const sum=(from)=>H.filter(x=>x.t>=from).reduce((a,x)=>a+(x.saving||0),0);
   const lock=`<b>🔒 ••,••</b>`,P_=pro();
-  let h=`<h1>Économies</h1>${trialBanner()}<div class="panel"><div class="stats">
+  const yp=P_?yearProjection():null,pk=H.reduce((a,x)=>a+(x.saving!=null?x.cost+x.saving:0),0),pcm=pk>0?Math.round(H.reduce((a,x)=>a+(x.saving||0),0)/pk*100):null;
+  let h=`<h1>Économies</h1>${trialBanner()}${P_?`<div class="panel"><span class="eyebrow">Sur un an, pour tout le foyer</span>${yp!=null?`<div class="year"><div class="amt" style="font-family:var(--display);font-size:1.9rem;font-weight:800;color:var(--ok)">≈ ${eur(yp)} <span style="font-size:.55em">par an</span></div><span class="note">si tu lances tes machines aux meilleurs créneaux (rythme moyen, ajusté avec ton historique)</span></div>`:`<span class="note">Renseigne tes prix dans Réglages pour voir la projection.</span>`}</div>`:''}<div class="panel"><div class="stats">
     <div class="stat"><span class="eyebrow">Ce mois</span>${P_?`<b>${eur(sum(m0))}</b>`:lock}</div>
     <div class="stat"><span class="eyebrow">Cette année</span>${P_?`<b>${eur(sum(y0))}</b>`:lock}</div>
-    <div class="stat"><span class="eyebrow">Cycles</span><b>${H.length}</b></div></div>
+    <div class="stat"><span class="eyebrow">${P_?"Économisé":"Cycles"}</span>${P_?`<b>${pcm!=null?pcm+' %':'–'}</b>`:`<b>${H.length} cycle${H.length>1?'s':''}</b>`}</div></div>
     <p class="note">${P_?'Comparé au même cycle lancé en heures pleines. Les montants précédés de ≈ sont des estimations ; seuls les programmes enregistrés depuis l\'étiquette énergie utilisent la consommation officielle.':'Tes cycles sont bien enregistrés. Les montants économisés s\'affichent avec la version Pro.'}</p></div>`;
   if(!P_){h+=proCard()+`<div class="panel"><span class="eyebrow">Derniers cycles</span><div class="hist">${[...H].sort((a,b)=>b.t-a.t).slice(0,30).map(x=>`
     <div><div>${esc(x.appl)} · ${esc(x.cycle)}</div><div class="when">${new Date(x.t).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})} ${fT(x.t)}</div></div>
     <b class="muted">🔒</b><button class="icon-btn" data-hdel="${x.id}" aria-label="Supprimer">✕</button>`).join('')||'<p class="note">Aucun cycle enregistré pour l\'instant.</p>'}</div></div>`;app.innerHTML=h;return}
-  if(!H.length)h+=`<div class="panel"><p class="note">Aucun cycle enregistré. Après avoir programmé la machine, touche « J'ai lancé ce cycle » dans l'onglet Calcul.</p></div>`;
+  if(!H.length)h+=`<div class="panel"><p class="note">Aucun cycle enregistré. Après avoir programmé la machine, touche « J'ai lancé ce cycle » dans l'onglet Différé.</p></div>`;
   else h+=`<div class="panel"><span class="eyebrow">Derniers cycles</span><div class="hist">${[...H].sort((a,b)=>b.t-a.t).slice(0,60).map(x=>`
     <div><div>${esc(x.appl)} · ${esc(x.cycle)}</div><div class="when">${new Date(x.t).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})} ${fT(x.t)}</div></div>
     <b style="color:var(--ok)">${x.saving!=null?(x.est===false?'':'≈ ')+eur(x.saving):'–'}</b><button class="icon-btn" data-hdel="${x.id}" aria-label="Supprimer">✕</button>`).join('')}</div></div>`;
@@ -470,8 +569,8 @@ function renderHist(){
 function priceInput(id,attr,v,locked){return `<input type="text" inputmode="decimal" id="${id}" ${attr} value="${v??''}" placeholder="€/kWh" style="width:6em"${locked?' disabled':''}>`}
 function renderSettings(){
   const off=OFFERS[S.offerId]||OFFERS.custom;
-  let h=`<h1>Réglages</h1><div class="panel"><h2>Affichage</h2><div class="seg" style="align-self:flex-start">${[['auto','Automatique'],['light','Fond blanc'],['dark','Fond noir']].map(([k,l])=>`<button data-theme-set="${k}" aria-pressed="${S.theme===k}">${l}</button>`).join('')}</div><p class="note">Automatique suit le réglage du téléphone.</p></div>
-  <div class="panel"><h2>Lancer les programmes en heures</h2>${targetSeg()}<p class="note">Auto vise les heures super creuses si ton offre en a, sinon les heures creuses. Ce choix se retrouve aussi sur l'écran Calcul.</p></div>
+  let h=`<h1>Réglages</h1><div class="panel"><h2>Affichage</h2><div class="seg" style="align-self:flex-start">${[['dark','Fond noir'],['light','Fond blanc']].map(([k,l])=>`<button data-theme-set="${k}" aria-pressed="${(S.theme==='light'?'light':'dark')===k}">${l}</button>`).join('')}</div></div>
+  <div class="panel"><h2>Lancer les programmes en heures</h2>${targetSeg()}<p class="note">Auto vise les heures super creuses si ton offre en a, sinon les heures creuses. Ce choix se retrouve aussi sur l'écran Différé.</p></div>
   <div class="panel"><h2>Offre d'électricité</h2>
     <select id="offer" aria-label="Offre">${Object.entries(OFFERS).map(([k,o])=>`<option value="${k}"${S.offerId===k?' selected':''}${o.pro&&!pro()?' disabled':''}>${o.label}${o.pro&&!pro()?' (Pro)':''}</option>`).join('')}</select>
     <p class="note">${esc(off.note)} Changer d'offre remplace les plages ci-dessous.</p>
@@ -509,11 +608,12 @@ function renderColors(){
   return h+`<p class="note">Ces couleurs s'appliquent à la frise, aux pastilles et à la légende.</p></div>`}
 
 function renderUnlock(){if(BUILD_PRO)return '';
+  if(achete)return `<div class="panel"><div class="row"><h2>Version Pro</h2>${proTag()}</div><p class="note">Achetée sur Google Play : elle revient toute seule sur tes autres téléphones Android avec le même compte Google. Merci !</p></div>`;
   if(unlocked)return `<div class="panel"><div class="row"><h2>Code ami</h2>${proTag()}</div><p class="note">Version Pro débloquée sur ce téléphone.</p></div>`;
   return `<div class="panel"><div class="row"><h2>Code ami</h2>${proTag()}</div><p class="note">Tu as reçu un code ? Il débloque toutes les fonctions Pro sur ce téléphone.</p>
   <div class="row"><input id="unlockBox" placeholder="AMI-XXXXX" autocapitalize="characters" autocomplete="off" style="flex:1;font-family:var(--mono);text-transform:uppercase"><button class="btn primary" data-unlock>Débloquer</button></div>
   ${ui.unlockMsg?`<p class="note">${esc(ui.unlockMsg)}</p>`:''}</div>`}
-function renderTransfer(){
+function renderTransfer(){if(!BUILD_PRO&&ui.achatDispo)return ''; // dans l'appli Play, la Pro est un achat intégré : rien à transférer
   let h=`<div class="panel"><h2>Transférer mes réglages</h2><p class="note">${BUILD_PRO?'Colle ici le code copié depuis la version gratuite pour récupérer tes cycles, horaires et historique.':'Copie ce code puis colle-le dans Différé Malin Pro (Réglages) pour retrouver tes cycles, horaires et historique.'}</p>`;
   if(!BUILD_PRO)h+=`<div class="row"><button class="btn" data-export>Copier le code</button>${ui.exportMsg?`<span class="note">${esc(ui.exportMsg)}</span>`:''}</div>${ui.exportShow?`<textarea id="exportBox" readonly rows="3" style="width:100%;font:12px var(--mono);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px">${esc(exportCode())}</textarea>`:''}`;
   else h+=`<textarea id="importBox" rows="3" placeholder="Colle le code ici" style="width:100%;font:12px var(--mono);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px"></textarea>
@@ -527,7 +627,7 @@ function importCode(code){const m=/DL1:([A-Za-z0-9+/=]+)/.exec((code||'').replac
 
 const tabsEl=document.getElementById('tabs');
 function render(){
-  const TABS=[['calc','Calcul'],['appl',pro()?'Appareils':'Cycles'],['hist','Économies'],['settings','Réglages']];
+  const TABS=[['calc','Différé'],['appl','Appareils'],['hist','Économies'],['settings','Réglages']];
   tabsEl.innerHTML=TABS.map(([k,l])=>`<button data-tab="${k}" aria-current="${k===ui.tab?'page':'false'}">${l}</button>`).join('');
   ({calc:renderCalc,appl:renderAppl,hist:renderHist,settings:renderSettings})[ui.tab]();
 }
@@ -540,6 +640,8 @@ app.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return
   else if(d.cyc){ui.cycleId=d.cyc;ui.pick=null;render()}
   else if(d.ep){ui.endPref=d.ep;ui.pick=null;render()}
   else if(d.pick){ui.pick=+d.pick;render()}
+  else if(d.pickreset!==undefined){ui.pick=null;ui.endPref='latest';render()}
+  else if(d.tabGo){ui.tab=d.tabGo;ui.resetArmed=false;render();window.scrollTo(0,0)}
   else if(d.tman){const[dd,c]=P(d.tman);setTempoManual(dd,c);render()}
   else if(d.col){const[ty,c]=P(d.col);S.colors[ty]=c;save();applyColors();render()}
   else if(d.labsave){const ai=+d.labsave,a=A[ai];a.label=a.label||{};
@@ -556,7 +658,7 @@ app.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return
     try{navigator.clipboard.writeText(code).then(()=>done('Code copié.'),()=>done('Sélectionne le code ci-dessous et copie-le.'))}catch(e){done('Sélectionne le code ci-dessous et copie-le.')}}
   else if(d.import!==undefined){try{importCode(document.getElementById('importBox').value);ui.importMsg='Réglages importés.'}catch(e){ui.importMsg='Code non reconnu : copie-le en entier depuis la version gratuite.'}render()}
   else if(d.log){const now=getNow(),ap=curAppl(),cyc=curCycle(ap);
-    const sel=choose(candidates(now,cyc.dur,ap,windows(now)),now);if(!sel)return;const ec=economics(cyc,sel,ap);
+    const sel=currentSel(now,ap,cyc).sel;if(!sel)return;const ec=economics(cyc,sel,ap);
     H.push({id:'h'+Date.now(),t:sel.st,at:Date.now(),en:sel.en,ap:ap.id,cid:cyc.id,appl:ap.name,cycle:cyc.name,est:!isLabel(cyc),kwh:ec?ec.kwh:cycKwh(ap,cyc),cost:ec?ec.cost:null,saving:ec?ec.saving:null});save();
     try{navigator.vibrate&&navigator.vibrate(40)}catch(e){}render()}
   else if(d.unlog){H=H.filter(x=>x.id!==d.unlog);save();render()}
@@ -610,6 +712,48 @@ app.addEventListener('click',e=>{const b=e.target.closest('[data-unlock]');if(!b
 (()=>{let c=null;try{c=new URLSearchParams(location.search).get('code')}catch(e){}if(!c||BUILD_PRO)return;
   try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}
   tryUnlock(c).then(ok=>{if(ok){applyColors();render()}else{ui.tab='settings';ui.unlockMsg='Code du lien non reconnu.';render()}},()=>{})})();
+
+/* ---- Achat intégré Google Play ---- */
+let playService=null;
+function setAchete(v){if(v===achete)return;achete=v;lsSet('achat',v?'1':'0');applyColors();if(v&&S.tempo)fetchTempo();render()}
+function boutonAchat(){
+  const note=ui.achatMsg?`<p class="note" role="status">${esc(ui.achatMsg)}</p>`:'';
+  if(ui.achatDispo)return `<div class="row"><button class="btn primary" data-acheter ${ui.achatEnCours?'disabled':''}>${ui.achatEnCours?'Achat en cours…':'Passer à Pro · '+esc(ui.achatPrix||PRICE_LABEL)}</button><span class="note">Achat unique, sans abonnement.</span></div>${note}`;
+  return `<div class="row"><a class="btn primary" href="${STORE_URL}" target="_blank" rel="noopener">Passer à Pro · ${PRICE_LABEL}</a><span class="note">Achat unique, sans abonnement.</span></div>
+    <p class="note">L'achat se fait dans l'appli Différé Malin installée depuis Google Play (Android).</p>${note}`}
+// Demande au serveur de confirmer l'achat. Renvoie 'ok', 'refus', 'attente' ou 'reseau'.
+async function verifierAchat(jeton){if(!VERIF_URL)return 'reseau';
+  try{const r=await fetch(VERIF_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:PLAY_APP,produit:PLAY_PRODUIT,jeton})});
+    const j=await r.json().catch(()=>({}));if(j.ok)return 'ok';if(j.raison==='attente')return 'attente';
+    if(j.raison==='annule'||j.raison==='inconnu')return 'refus';return 'reseau'}catch(e){return 'reseau'}}
+async function initAchat(){
+  if(!VERIF_URL||!('getDigitalGoodsService' in window))return;
+  try{playService=await window.getDigitalGoodsService(PLAY_BILLING)}catch(e){return}
+  if(!playService)return;
+  ui.achatDispo=true;
+  try{const [d]=await playService.getDetails([PLAY_PRODUIT]);
+    if(d&&d.price)ui.achatPrix=new Intl.NumberFormat('fr-FR',{style:'currency',currency:d.price.currency}).format(d.price.value)}catch(e){}
+  // Achats déjà faits avec ce compte Google (nouveau téléphone, réinstallation, remboursement)
+  try{const achats=await playService.listPurchases();const p=achats.find(x=>x.itemId===PLAY_PRODUIT);
+    if(p){setAchete(true);verifierAchat(p.purchaseToken)} // la confirmation est refaite au cas où elle aurait échoué
+    else setAchete(false)}catch(e){}
+  render()}
+async function acheter(){if(!playService||ui.achatEnCours)return;
+  ui.achatMsg='';ui.achatEnCours=true;render();
+  try{const req=new PaymentRequest([{supportedMethods:PLAY_BILLING,data:{sku:PLAY_PRODUIT}}],{total:{label:'Total',amount:{currency:'EUR',value:'0'}}});
+    const rep=await req.show();const jeton=rep.details&&rep.details.purchaseToken;
+    const res=jeton?await verifierAchat(jeton):'refus';
+    if(res==='ok'){await rep.complete('success');setAchete(true);ui.achatMsg='Merci ! Toutes les fonctions Pro sont débloquées.'}
+    else if(res==='reseau'){await rep.complete('success');setAchete(true);ui.achatMsg='Achat enregistré. La confirmation sera refaite à la prochaine ouverture avec Internet.'}
+    else if(res==='attente'){await rep.complete('success');ui.achatMsg='Paiement en attente chez Google. La Pro se débloquera dès qu\'il sera validé.'}
+    else{await rep.complete('fail');ui.achatMsg='Achat non validé par Google Play. Si tu as été débité, Google te rembourse automatiquement sous quelques jours.'}
+  }catch(e){ui.achatMsg=e&&e.name==='AbortError'?'':'Achat impossible pour le moment. Réessaie plus tard.'}
+  ui.achatEnCours=false;render()}
+app.addEventListener('click',e=>{
+  if(e.target.closest('[data-acheter]')){e.stopPropagation();acheter();return}
+  if(e.target.closest('[data-voirpro]')){e.stopPropagation();const c=document.getElementById('pro-card');if(c)c.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});else{ui.tab='appl';render();window.scrollTo(0,0)}}});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&playService)initAchat()});
+initAchat();
 </script>
 
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}</script>
