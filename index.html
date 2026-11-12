@@ -156,8 +156,8 @@ details.opts .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 .list{display:flex;flex-direction:column;gap:10px}
 .cycle{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px}
 .cycle .dur{grid-column:2/4;display:flex;gap:6px;align-items:center;font-size:.9rem;color:var(--muted);flex-wrap:wrap}
-.star-btn{font-size:1.4rem;border:0;background:none;color:var(--none);padding:4px;min-width:44px;min-height:44px}
-.star-btn[aria-pressed=true]{color:var(--hp)}
+.star-btn{font-size:1.4rem;border:0;background:none;color:var(--muted);padding:4px;min-width:44px;min-height:44px}
+.star-btn[aria-pressed=true]{color:var(--pro)}
 .range{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .range input[type=time]{width:8.4em}
 .group{display:flex;flex-direction:column;gap:6px}
@@ -520,7 +520,7 @@ function proCard(){return `<div class="panel pro-card" id="pro-card"><div class=
   ${typeof boutonAchat==='function'?boutonAchat():''}</div>`}
 
 function renderAppl(){
-  let h=`<h1>Appareils</h1><p class="note">L'étoile marque le cycle proposé par défaut. Les durées et consommations préremplies sont des exemples : remplace-les par celles de tes appareils.</p>`;
+  let h=`<h1>Appareils</h1><p class="note">Le cycle favori <b style="color:var(--pro)">★</b> est proposé en premier dans Différé. Pour en changer, touche l'étoile <b>☆</b> d'un autre cycle. Les durées et consommations préremplies sont des exemples : remplace-les par celles de tes appareils.</p>`;
   visAppl().forEach((a,ai)=>{
     h+=`<div class="panel">`;
     if(pro())h+=`<div class="row between"><input id="an-${ai}" data-aname="${ai}" value="${esc(a.name)}" style="font-weight:700;flex:1" aria-label="Nom de l'appareil">${A.length>1?`<button class="icon-btn" data-adel="${ai}" aria-label="Supprimer l'appareil">✕</button>`:''}</div>`;
@@ -543,8 +543,8 @@ function renderAppl(){
         <label class="field">Différé maximum (h)<input type="number" id="amax-${ai}" data-amax="${ai}" min="1" max="48" value="${a.maxDelay}"></label>
         <label class="field">Pas de réglage<select id="astep-${ai}" data-astep="${ai}"><option value="60"${a.step==60?' selected':''}>1 heure</option><option value="30"${a.step==30?' selected':''}>30 min</option></select></label></div>`}
     const hidden=a.cycles.length-visCycles(a).length,full=!pro()&&a.cycles.length>=FREE_CYCLES;
-    h+=`<span class="eyebrow">Cycles${pro()?'':` · ${Math.min(a.cycles.length,FREE_CYCLES)} sur ${FREE_CYCLES}`}</span><div class="list">`+visCycles(a).map((c,ci)=>`<div class="cycle">
-       <button class="star-btn" data-fav="${ai}|${ci}" aria-pressed="${!!c.fav}" aria-label="Cycle favori">★</button>
+    h+=`<span class="eyebrow">Cycles${pro()?'':` · ${Math.min(a.cycles.length,FREE_CYCLES)} sur ${FREE_CYCLES}`}</span><p class="note">Touche l'étoile ☆ pour choisir le cycle proposé en premier.</p><div class="list">`+visCycles(a).map((c,ci)=>`<div class="cycle">
+       <button class="star-btn" data-fav="${ai}|${ci}" aria-pressed="${!!c.fav}" aria-label="${c.fav?'Cycle favori':'Mettre ce cycle en favori'}" title="${c.fav?'Cycle favori':'Mettre en favori'}">${c.fav?'★':'☆'}</button>
        <input id="cn-${ai}-${ci}" data-cname="${ai}|${ci}" value="${esc(c.name)}" aria-label="Nom du cycle">
        <button class="icon-btn" data-cdel="${ai}|${ci}" aria-label="Supprimer le cycle">✕</button>
        <div class="dur">Durée <input type="number" min="0" max="12" id="ch-${ai}-${ci}" data-ch="${ai}|${ci}" value="${Math.floor(c.dur/60)}" aria-label="Heures"> h
