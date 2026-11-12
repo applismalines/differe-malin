@@ -624,8 +624,9 @@ function renderColors(){
 
 function renderUnlock(){if(BUILD_PRO)return '';
   if(achete)return `<div class="panel"><div class="row"><h2>Version Pro</h2>${proTag()}</div><p class="note">Achetée sur Google Play : elle revient toute seule sur tes autres téléphones Android avec le même compte Google. Merci !</p></div>`;
-  if(unlocked)return `<div class="panel"><div class="row"><h2>Code ami</h2>${proTag()}</div><p class="note">Version Pro débloquée sur ce téléphone.</p></div>`;
-  return `<div class="panel"><div class="row"><h2>Code ami</h2>${proTag()}</div><p class="note">Tu as reçu un code ? Il débloque toutes les fonctions Pro sur ce téléphone.</p>
+  if(unlocked)return `<div class="panel"><div class="row"><h2>Code ami</h2>${proTag()}</div><p class="note">Version Pro débloquée sur ce téléphone.</p><button class="btn small" style="align-self:flex-start" data-relock>Retirer le code de ce téléphone</button></div>`;
+  const achatEssai=trialLeft()>0&&ui.achatDispo?`<div class="panel"><div class="row"><h2>Version Pro</h2>${proTag()}</div><p class="note">Tu es en essai. Tu peux garder la Pro dès maintenant :</p>${boutonAchat()}</div>`:'';
+  return achatEssai+`<div class="panel"><div class="row"><h2>Code ami</h2>${proTag()}</div><p class="note">Tu as reçu un code ? Il débloque toutes les fonctions Pro sur ce téléphone.</p>
   <div class="row"><input id="unlockBox" placeholder="AMI-XXXXX" autocapitalize="characters" autocomplete="off" style="flex:1;font-family:var(--mono);text-transform:uppercase"><button class="btn primary" data-unlock>Débloquer</button></div>
   ${ui.unlockMsg?`<p class="note">${esc(ui.unlockMsg)}</p>`:''}</div>`}
 function renderTransfer(){if(!BUILD_PRO&&ui.achatDispo)return ''; // dans l'appli Play, la Pro est un achat intégré : rien à transférer
@@ -723,6 +724,9 @@ applyTheme();applyColors();render();fetchTempo();
 app.addEventListener('click',e=>{const b=e.target.closest('[data-unlock]');if(!b)return;e.stopPropagation();
   const v=(document.getElementById('unlockBox')||{}).value;
   tryUnlock(v).then(ok=>{ui.unlockMsg=ok?'':'Code non reconnu. Vérifie la saisie (exemple : AMI-7K3QP).';if(ok){applyColors();if(S.tempo)fetchTempo()}render()},()=>{ui.unlockMsg='Déblocage impossible sur ce navigateur. Ouvre l\'appli dans Safari ou Chrome.';render()})});
+app.addEventListener('click',e=>{const b=e.target.closest('[data-relock]');if(!b)return;e.stopPropagation();
+  if(!confirm('Retirer le code ami de ce téléphone ? Tu pourras le saisir à nouveau.'))return;
+  unlocked=false;lsSet('unlock','0');ui.unlockMsg='';applyColors();render()});
 /* Lien direct : …/differe-malin/?code=AMI-XXXXX */
 (()=>{let c=null;try{c=new URLSearchParams(location.search).get('code')}catch(e){}if(!c||BUILD_PRO)return;
   try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}
