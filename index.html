@@ -29,6 +29,7 @@ img{max-width:100%}[hidden]{display:none!important}
 @font-face{font-family:"Share Tech Mono";font-style:normal;font-weight:400;font-display:swap;src:url(polices/share-tech-mono.woff2) format("woff2")}
 @font-face{font-family:"Oswald";font-style:normal;font-weight:600;font-display:swap;src:url(polices/oswald-600.woff2) format("woff2")}
 @font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:800;font-display:swap;src:url(polices/big-shoulders-800.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-style:normal;font-weight:600;font-display:swap;src:url(polices/barlow-condensed-600.woff2) format("woff2")}
 /* Layout: une colonne de téléphone, écran "machine" en tête, barre d'onglets en bas */
 :root{
   --card2:#e6e9f2; --fg2:#3a4060; --bg:#ffffff; --surface:#f3f5fa; --fg:#151a2e; --muted:#5b627d; --line:#d6dbe8;
@@ -75,10 +76,12 @@ input[type=number]{width:5em}
 .chip.cyc[aria-pressed=true]{font-weight:800}
 .chip.cyc .d{font-size:.85em;opacity:.8}
 .chips.cycs{gap:5px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-/* Big Shoulders : phrase sous le grand chiffre, encart des économies, cycles (Appareils), heures et dates (champs) */
-.hero .sub,.slot,.cost,.encart .note,.encart .saving,.encart .row>span,.cycle input,input[type=time],input[type=date],[data-sfrom],[data-sto]{font-family:var(--bs);font-weight:800;letter-spacing:.02em}
+/* Big Shoulders : phrase sous le grand chiffre, cycles (Appareils), heures et dates (champs) */
+.hero .sub,.slot,.cost,.cycle input,input[type=time],input[type=date],[data-sfrom],[data-sto]{font-family:var(--bs);font-weight:800;letter-spacing:.02em}
 .hero .sub{font-size:1.3rem}
-.slot,.cost,.encart .note{font-size:1.05rem}
+.slot,.cost{font-size:1.05rem}
+/* Barlow Condensed : phrases de l'encart des économies (pas le montant, pas le bouton) */
+.encart .note,.encart .saving,.encart .row>span{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:1.1rem;letter-spacing:.01em}
 .cycle input,input[type=time],input[type=date],[data-sfrom],[data-sto]{font-size:1.1rem}
 .chip .star{color:var(--accent)}
 .chip[aria-pressed=true] .star,.chip[aria-pressed=true] .muted{color:inherit}
