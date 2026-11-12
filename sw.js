@@ -1,4 +1,4 @@
-const CACHE='differe-malin-gratuite-v14';
+const CACHE='differe-malin-gratuite-v15';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./icon-monochrome-512.png',
   './polices/atkinson-400.woff2','./polices/atkinson-700.woff2','./polices/bricolage.woff2','./polices/share-tech-mono.woff2','./polices/oswald-600.woff2','./polices/barlow-condensed-600.woff2'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});

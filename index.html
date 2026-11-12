@@ -218,6 +218,8 @@ async function tryUnlock(code){code=(code||'').toUpperCase().replace(/\s/g,'');i
   const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(UNLOCK_SALT+code));
   const hex=[...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
   if(UNLOCK_HASHES.includes(hex)){unlocked=true;lsSet('unlock','1');return true}return false}
+// Les 3 premières = couleurs d'origine du thème (cochées par défaut)
+const swatchesTheme=()=>S.theme==='light'?[...new Set(['#0b7f76','#6aa9b4','#cf7a26',...SWATCHES.slice(3)])]:SWATCHES;
 const SWATCHES=['#46c8c7','#1f5a5a','#3a3a3c','#3a3eb4','#6c4bd8','#2f6fd6','#1f9bd1','#2b8a81','#3f9a3a','#9bb21e','#e0b31b','#cf7a26','#d4532b','#c8322b','#c23a7a','#7a5c4a','#5b627d'];
 const TYPES={hsc:'Super creuses',hc:'Creuses',hp:'Pleines'};
 const COLORS={bleu:'Bleu',blanc:'Blanc',rouge:'Rouge'};
@@ -618,7 +620,7 @@ function renderColors(){
   let h=`<div class="panel"><div class="row between"><h2>Couleurs des plages</h2><button class="btn small" data-colreset>Couleurs d'origine</button></div>`;
   for(const ty of ['hsc','hc','hp']){const cur=(S.colors[ty]||cs.getPropertyValue('--'+ty).trim()).toLowerCase();
     h+=`<div class="group"><h3><span class="dot t-${ty}"></span>Heures ${TYPES[ty].toLowerCase()}</h3>
-      <div class="swatches" role="group" aria-label="Couleur des heures ${TYPES[ty].toLowerCase()}">${SWATCHES.map(c=>`<button class="sw" data-col="${ty}|${c}" style="background:${c}" aria-pressed="${cur===c}" aria-label="${c}"></button>`).join('')}
+      <div class="swatches" role="group" aria-label="Couleur des heures ${TYPES[ty].toLowerCase()}">${swatchesTheme().map(c=>`<button class="sw" data-col="${ty}|${c}" style="background:${c}" aria-pressed="${cur===c}" aria-label="${c}"></button>`).join('')}
       <label class="sw sw-free" title="Autre couleur"><input type="color" id="colp-${ty}" data-colpick="${ty}" value="${/^#[0-9a-f]{6}$/.test(cur)?cur:'#3a3eb4'}" aria-label="Autre couleur">+</label></div></div>`}
   return h+`<p class="note">Ces couleurs s'appliquent à la frise, aux pastilles et à la légende.</p></div>`}
 
